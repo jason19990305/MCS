@@ -9,7 +9,7 @@ import urllib
 import json
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(24,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+GPIO.setup(24,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 #MCS client
 
