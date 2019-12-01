@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 
 import RPi.GPIO as GPIO
-
+import time
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(24,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(4,GPIO.OUT)
 
 while True:
-	SwitchStatus = GPIO.input(24)
-	print(SwitchStatus)
+	GPIO.output(4,1)
+	time.sleep(1)
+	GPIO.output(4,0)
+	time.sleep(0.5)	
+GPIO.cleanup()
