@@ -9,13 +9,13 @@ import urllib
 import json
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(24,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 #MCS client
 
-deviceid = "D1ipFZDJ"
+deviceid = "DFxYdiWz"
 
-deviceKey = "4S9xNs7oLLX5x9lW"
+deviceKey = "ayEwvdcaWX04wLRP"
 
 def post_to_mcs(payload):
 	headers = {"Content-type":"application/json","deviceKey":deviceKey}
@@ -55,12 +55,12 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
 while True:
 	h0,t0 = Adafruit_DHT.read_retry(sensor,pin)
-	SwitchStatus = GPIO.input(24)
+	SwitchStatus = GPIO.input(17)
 
 	if h0 is not None and t0 is not None:
 		print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(t0, h0))
 		print(SwitchStatus)
-		payload = {"datapoints":[{"dataChnId":"Humidity","values":{"value":h0}},{"dataChnId":"Temperature","values":{"value":t0}},{"dataChnId":"SwitchStatus","values":{"value":SwitchStatus}}]} 
+		payload = {"datapoints":[{"dataChnId":"Temperature","values":{"value":t0}},{"dataChnId":"Led","values":{"value":SwitchStatus}}]} 
 
 		post_to_mcs(payload)
 	else:
